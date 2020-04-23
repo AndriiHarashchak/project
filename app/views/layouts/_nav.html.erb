@@ -1,0 +1,33 @@
+<nav class = "navbar navbar-expand-sm bg-light navbar-light" id="navigationbar">
+<!--  <a class="navbar-brand" href="#">
+    <img src="img/logo.png">
+  </a>-->
+  <span class = "navbar-link">
+    <h2><%= link_to 'Simple Blog', posts_path, class: "text-dark font-weight-bold"%></h2>
+  </span>
+  <button class="navbar-toggler" type = "button" data-toggle="collapse" data-target="#navdata">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id = "navdata">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a href="https://www.lamborghini.com" class="nav-link">Official site</a>
+      </li>
+      <li class="nav-item active">
+        <a href="#" class="nav-link">About</a>
+      </li>
+      <% if current_user %>
+      <li class="nav-item">
+        <%= link_to 'Додати пост', new_post_path, class: 'btn btn-success'%>	&nbsp;
+      </li>
+      <% end %>
+      <li class="nav-item active">
+        <% if !current_user %>
+        <%= link_to 'Login', new_user_session_path, class: "btn btn-success" %>
+          <% else %>
+          <%= link_to 'Sing Out', destroy_user_session_path, method: :delete, class: "btn btn-danger" %>
+        <%end %>
+      </li>
+    </ul>
+  </div>
+</nav>

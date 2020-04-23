@@ -1,0 +1,63 @@
+ <div class = 'padding' id="mainpage">
+    <div class="text-center">
+      <h1><%= @post.title %></h1>
+    </div>
+    <div>
+      <h3><%= @post.subtitle %></h3>
+    </div>
+    <div>
+      <p><%= @post.body %></p>
+    </div>
+    <div class="text-muted">
+      <div class="row">
+        <div class="col-md-6 text-left">
+          <p>Written by:&nbsp;<%= @post.user.username %></p>
+        </div>
+        <div class="col-md-6 text-right">
+          <p>At: <%= @post.created_at %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <% if current_user == @post.user || current_user.admin %>
+      <%= link_to 'Редагувати', edit_post_path(@post), {:class => 'btn btn-primary'}%> |
+      <%= link_to 'Видалити', post_path(@post), method: :delete,data: { confirm: 'Are you sure?'} , class: 'btn btn-danger' %> | <!---->
+    <% end %>
+    <%= link_to 'Назад', posts_path, {:class => 'btn btn-primary'} %>
+  </div>
+  <br/>
+  <h3>Коментарі</h3>
+<% @post.comments.each do |comment| %>
+  <div class=" container-fluid">
+    <div class="row">
+      <strong><%= comment.user.username%></strong>
+       &nbsp&nbsp&nbsp&nbsp
+      <%if comment.user == current_user || current_user.admin %>
+          <%= link_to 'detete', [comment.post, comment],method: :delete, data: { confirm: 'Are you sure?'} %>
+      <% end %>
+      <br />
+    </div>
+    <div class="row">
+      <div class="col-sm-12 col-md-8 text-muted text-left">
+        <%= comment.body %>
+      </div>
+      <div class="col-sm-12 col-md-4 text-muted text-right">
+        <%=comment.created_at %>
+      </div>
+    </div>
+  </div>
+    <br />
+<% end %>
+<hr>
+<div class="form">
+  <h4>Додати коментар</h4>
+  <%= form_for ([@post, @post.comments.build]) do |f|  %>
+    <div class="form-group">
+      <%= f.text_area(:body, class:"form-control", placeholder: 'Текст коментаря' )  %>
+    </div>
+    <div class="form-group">
+      <%= f.submit("Додати коментар",class: "btn btn-warning padding") %>
+    </div>
+  <% end %>
+</div>
