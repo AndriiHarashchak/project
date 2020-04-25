@@ -1,20 +1,18 @@
 <% @posts.each do |post| %>
     <div class="container">
       <div>
-        <h2><%= post.title %></h2>
+        <h2 class ='btn btn-primary'><%= post.title %> | <%= post.category%></h2>
       </div>
-      <div>
-        <div>
-          <h4 class="text-muted text-left"><%=  post.subtitle %></h4>
-        </div>
-        <div class="row">
+      <div> 
+        <h4 class="text-muted text-left"><%=  post.subtitle %></h4>
+      </div>
+      <div class="row">
           <div class="col-md-6 text-left">
             <p class="text-muted"> Написав: 	&nbsp;	<%=  post.user.username %></p>
           </div>
           <div class="col md-6 text-right">
             <p class="text-muted">В:&nbsp; <%=  post.created_at %></p>
           </div>
-        </div>
       </div>
       <div>
         <%= link_to 'Читати', post, class: "btn btn-primary" %>

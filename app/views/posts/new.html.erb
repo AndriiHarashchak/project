@@ -2,8 +2,10 @@
 <div class="container">
   <h1 class="text-center w-100">Новий пост</h1>
   <%= render 'form', post: @post %>
+<div id ="cansel">
+  <%= link_to 'Скасувати', posts_path, class: 'btn btn-danger text-center w-100 p-2'  %><br/>
+</div>
 
-  <%= link_to 'Скасувати', posts_path, class: 'btn btn-danger text-center w-100 p-2' %><br/>
 
 </div>
 

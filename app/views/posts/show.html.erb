@@ -1,4 +1,4 @@
- <div class = 'padding' id="mainpage">
+ <div class = 'container'>
     <div class="text-center">
       <h1><%= @post.title %></h1>
     </div>
@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class=" container">
     <% if current_user %>
       <% if current_user == @post.user || current_user.admin %>
         <%= link_to 'Редагувати', edit_post_path(@post), {:class => 'btn btn-primary'}%> |
@@ -29,9 +29,10 @@
     <%= link_to 'Назад', posts_path, {:class => 'btn btn-primary'} %>
   </div>
  <hr>
-  <h3>Коментарі</h3>
+ <div class=" container">
+ <h3>Коментарі</h3>
 <% @post.comments.each do |comment| %>
-  <div class=" container-fluid">
+
     <div class="row">
       <strong><%= comment.user.username%></strong>
        &nbsp&nbsp&nbsp&nbsp
@@ -50,12 +51,13 @@
         <%=comment.created_at %>
       </div>
     </div>
-  </div>
+
     <br />
 <% end %>
+ </div>
 <hr>
 
-<div class="form">
+<div class="form container">
   <%if current_user %>
     <h5>Додати коментар</h5>
   <%= form_for ([@post, @post.comments.build]) do |f|  %>
@@ -63,7 +65,7 @@
       <%= f.text_area(:body, class:"form-control", placeholder: 'Текст коментаря' )  %>
     </div>
     <div class="form-group">
-      <%= f.submit("Додати коментар",class: "btn btn-warning padding") %>
+      <%= f.submit("Додати коментар",class: "btn btn-warning mb-3") %>
     </div>
   <% end %>
     <% else %>

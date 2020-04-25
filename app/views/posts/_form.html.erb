@@ -26,10 +26,11 @@
     <div class="form-group">
       <%= form.label :category %>
       <%#= form.select :category, Category.all.select(:name), :prompt => "Виберіть категорію", class: 'form-control' %>
-      <%= form.collection_select(:category_ids, Category.all, :id, :name,{:"data-style" => "form-control", :"data-size" => "5"}, {class: "selectpicker", multiple: false}) %>
+      <%#= form.collection_select(:category_ids, Category.all, :id, :name,{:"data-style" => "form-control", :"data-size" => "5"}, multiple: false) %>
+      <%= form.collection_select(:category, Category.all, :id, :name,{:"data-style" => "form-control", :"data-size" => "5"}, multiple: false) %>
     </div>
     <div class="form-submit">
       <%= form.submit('Cтворити пост',class:'btn btn-success w-100') %>
     </div>
-  </div>
+    </div>
 <% end %>
