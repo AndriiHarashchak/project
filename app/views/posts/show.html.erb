@@ -20,22 +20,26 @@
     </div>
   </div>
   <div class="row">
-    <% if current_user == @post.user || current_user.admin %>
-      <%= link_to 'Редагувати', edit_post_path(@post), {:class => 'btn btn-primary'}%> |
-      <%= link_to 'Видалити', post_path(@post), method: :delete,data: { confirm: 'Are you sure?'} , class: 'btn btn-danger' %> | <!---->
+    <% if current_user %>
+      <% if current_user == @post.user || current_user.admin %>
+        <%= link_to 'Редагувати', edit_post_path(@post), {:class => 'btn btn-primary'}%> |
+        <%= link_to 'Видалити', post_path(@post), method: :delete,data: { confirm: 'Are you sure?'} , class: 'btn btn-danger' %> | <!---->
+      <% end %>
     <% end %>
     <%= link_to 'Назад', posts_path, {:class => 'btn btn-primary'} %>
   </div>
-  <br/>
+ <hr>
   <h3>Коментарі</h3>
 <% @post.comments.each do |comment| %>
   <div class=" container-fluid">
     <div class="row">
       <strong><%= comment.user.username%></strong>
        &nbsp&nbsp&nbsp&nbsp
+      <% if current_user %>
       <%if comment.user == current_user || current_user.admin %>
           <%= link_to 'detete', [comment.post, comment],method: :delete, data: { confirm: 'Are you sure?'} %>
       <% end %>
+        <%end %>
       <br />
     </div>
     <div class="row">
@@ -50,8 +54,10 @@
     <br />
 <% end %>
 <hr>
+
 <div class="form">
-  <h4>Додати коментар</h4>
+  <%if current_user %>
+    <h5>Додати коментар</h5>
   <%= form_for ([@post, @post.comments.build]) do |f|  %>
     <div class="form-group">
       <%= f.text_area(:body, class:"form-control", placeholder: 'Текст коментаря' )  %>
@@ -60,4 +66,7 @@
       <%= f.submit("Додати коментар",class: "btn btn-warning padding") %>
     </div>
   <% end %>
+    <% else %>
+      <h6 class="text-muted"><%= 'Увійдіть щоб залишити кометар' %></h6>
+    <% end %>
 </div>
