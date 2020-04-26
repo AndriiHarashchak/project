@@ -1,9 +1,9 @@
 <% @posts.each do |post| %>
     <div class="container">
-      <div>
-        <h2 class ='btn btn-primary'><%= post.title %> | <%= post.category%></h2>
+      <div id = "post-header">
+          <h2 ><%= post.title %> | <span class="text-muted " id="category"><%= @cat[post.category.to_i-1].name%></span></h2>
       </div>
-      <div> 
+      <div>
         <h4 class="text-muted text-left"><%=  post.subtitle %></h4>
       </div>
       <div class="row">
