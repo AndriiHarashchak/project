@@ -1,14 +1,14 @@
-<nav class = "navbar navbar-expand-sm bg-warning navbar-light" id="navigationbar">
+<nav class = "navbar navbar-expand-md bg-warning navbar-light" id="navigationbar">
 <div class="container">
-  <span class = "navbar-link">
+  <span class = "navbar-link navbar-brand">
     <h2><%= link_to 'Simple Blog', posts_path, class: "text-dark font-weight-bold"%></h2>
   </span>
   <button class="navbar-toggler" type = "button" data-toggle="collapse" data-target="#navdata">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id = "navdata">
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active">
+    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <li class="nav-item">
         <%= link_to 'Про нас', about_path, class: 'btn' %>
       </li>
       <% if current_user %>
@@ -16,7 +16,7 @@
           <%= link_to 'Додати пост', new_post_path, class: 'btn btn-success'%>	&nbsp;
         </li>
       <% end %>
-      <li class="nav-item active">
+      <li class="nav-item">
         <% if !current_user %>
           <%= link_to 'Вхід', new_user_session_path, class: "btn btn-success" %>
         <% else %>
