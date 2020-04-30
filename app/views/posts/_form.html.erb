@@ -1,7 +1,7 @@
 <%= form_with(model: post, local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation" class="container">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2> Помилок: <%= post.errors.count %>  при спробі зберегти пост:</h2>
       <ul>
         <% post.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -11,26 +11,24 @@
   <% end %>
   <div class="form">
     <div class="form-group">
-      <%= form.label :title %>
+      <%= form.label 'Заголовок' %>
       <%= form.text_field :title, class: 'form-control' %>
     </div>
     <div class="form-group">
-      <%= form.label :subtitle %>
+      <%= form.label 'Підзаголовок' %>
       <%= form.text_field :subtitle, class: 'form-control' %>
     </div>
 
     <div class="form-group">
-      <%= form.label :body %>
+      <%= form.label 'Тіло поста' %>
       <%= form.text_area :body, class: 'form-control' %>
     </div>
-    <div class="form-group">
-      <%= form.label :category %>
-      <%#= form.select :category, Category.all.select(:name), :prompt => "Виберіть категорію", class: 'form-control' %>
-      <%#= form.collection_select(:category_ids, Category.all, :id, :name,{:"data-style" => "form-control", :"data-size" => "5"}, multiple: false) %>
-      <%= form.collection_select(:category, Category.all, :id, :name,{:"data-style" => "form-control", :"data-size" => "5"}, multiple: false) %>
+    <div class="form-group w-100">
+      <%= form.label "Категорія" %>
+      <%= form.collection_select(:category, Category.all, :id, :name, class: "form-control form-control-lg", multiple: false) %>
     </div>
     <div class="form-submit">
-      <%= form.submit('Cтворити пост',class:'btn btn-success w-100') %>
+      <%= form.submit('Зберегти',class:'btn btn-success w-100') %>
     </div>
     </div>
 <% end %>

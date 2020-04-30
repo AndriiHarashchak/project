@@ -1,6 +1,12 @@
-<h1>Editing Post</h1>
+<div class="container">
+  <h1 class="text-center">Редагування поста</h1>
+  <%= render 'form', post: @post %>
+<div class="container text-center p-2">
+  <%= link_to 'Показати пост', @post, class: "btn btn-secondary" %> |
+  <%= link_to 'Назад', posts_path, class: "btn btn-primary" %>
+</div>
 
-<%= render 'form', post: @post %>
+</div>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
+
+
